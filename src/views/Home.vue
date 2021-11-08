@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    home
+    <p>My name is  {{ name }} and age  {{age}}</p>
+    <button v-on:click="handleClick">click me</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld,
-  },
+  //this func(setup) will run before any lifecircle hooks
+  setup() {
+    console.log("setup");
+    let name = "coco";
+    let age = 1;
+
+    const handleClick = () => {
+      console.log('you clicked me')
+    }
+
+    return { name, age, handleClick };
+  }
+
 };
 </script>
