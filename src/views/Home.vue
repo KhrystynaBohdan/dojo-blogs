@@ -1,33 +1,37 @@
 <template>
   <div class="home">
-    home
-    <p>My name is {{ name }} and age {{ age }}</p>
-    <button v-on:click="handleClick">click me</button>
-    <button v-on:click="age++">add 1</button>
-    <input type="text" v-model="name"/>
+    <h1>Home</h1>
+    <h1>Refs</h1>
+    <p>{{cocoOne.name}} - {{cocoOne.age}}</p>
+    <button v-on:click="updatecocoOne">update</button>
+    <h2>reactive</h2>
+    <p>{{cocoTwo.name}} - {{cocoTwo.age}}</p>
+    <button v-on:click="updatecocoTwo">update</button>
+
   </div>
 </template>
 
 <script>
 
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 
 export default {
   name: "Home",
   //this func(setup) will run before any lifecircle hooks
   setup() {
+    const cocoOne = ref ({name: 'coco', age: 1})
+    const cocoTwo = reactive({name: 'anna', age: 36})
 
-    // const p = ref(null);
+    const updatecocoOne = ()=>{
+      cocoOne.value.age = 5
+    }
 
-    const name = ref("coco");
-    const age = ref(1);
+    const updatecocoTwo= ()=>{
+      cocoTwo.age = 85
+    }
 
-    const handleClick = () => {
-      name.value = "bohdan";
-      age.value = 2;
-    };
 
-    return { name, age, handleClick };
+    return { cocoOne, updatecocoOne, cocoTwo, updatecocoTwo};
   }
 
 };
