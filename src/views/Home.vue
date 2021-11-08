@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     home
-    <p ref="p">My name is  {{ name }} and age  {{age}}</p>
+    <p>My name is {{ name }} and age {{ age }}</p>
     <button v-on:click="handleClick">click me</button>
+    <button v-on:click="age++">add 1</button>
+    <input type="text" v-model="name"/>
   </div>
 </template>
 
@@ -15,19 +17,17 @@ export default {
   //this func(setup) will run before any lifecircle hooks
   setup() {
 
-    const p = ref(null);
+    // const p = ref(null);
 
-    console.log(p, p.value);
-    let name = "coco";
-    let age = 1;
+    const name = ref("coco");
+    const age = ref(1);
 
     const handleClick = () => {
-      console.log(p, p.value)
-      p.value.classList.add('test')
-      p.value.textContent = 'bohdan'
-    }
+      name.value = "bohdan";
+      age.value = 2;
+    };
 
-    return { name, age, handleClick, p};
+    return { name, age, handleClick };
   }
 
 };
